@@ -1,4 +1,5 @@
-import { getServerSession } from "next-auth";
+import Sidebar from "@/components/Sidebar";
+import Checker from "../../components/auth-checker";
 
 export default async function HomeLayout({
   children,
@@ -6,10 +7,14 @@ export default async function HomeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <main className="w-full h-screen flex flex-col items-center">
-        {children}
-      </main>
-    </>
+    <Checker>
+      <>
+        <Sidebar />
+        <main className="w-full h-screen flex flex-col items-center">
+          {/* make a side bar */}
+          {children}
+        </main>
+      </>
+    </Checker>
   );
 }

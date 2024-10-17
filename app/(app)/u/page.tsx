@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react";
 
 const Page = () => {
-  return <div>Page</div>;
+  return <div className="">User page</div>;
 };
 
 export default Page;
