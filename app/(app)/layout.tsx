@@ -1,4 +1,3 @@
-import Sidebar from "@/components/Sidebar";
 import Checker from "../../components/auth-checker";
 
 export default async function HomeLayout({
@@ -8,8 +7,8 @@ export default async function HomeLayout({
 }>) {
   return (
     <Checker>
+      {/* <Sidebar /> */}
       <>
-        <Sidebar />
         <main className="w-full h-screen flex flex-col items-center">
           {/* make a side bar */}
           {children}

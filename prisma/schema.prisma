@@ -18,29 +18,19 @@ model User {
   email        String   @unique
   name         String
   provider     Provider
-  streams      Stream[]
-  upvotes      Upvote[]
 }
 
-model Stream {
-  id           String   @id @default(uuid())
-  type         StreamType
-  url          String
-  extractedId  String
-  active       Boolean      @default(true)
-  upvotes      Upvote[]
-  userId       String
-  user         User         @relation(fields: [userId], references: [id])
+model Space {
+  id           String   @id @default(uuid()) 
+  
 }
 
-model Upvote {
-  id        String      @id  @default(uuid())
-  userId    String
-  streamId  String
-  user      User        @relation(fields: [userId], references: [id])
-  stream    Stream        @relation(fields: [streamId], references: [id])
-  @@unique([userId, streamId])
-}
+
+// model Upvote {
+//   id           String   @id @default(uuid()) 
+//   stream       
+  
+// }
 
 enum StreamType {
   Spotify
@@ -50,6 +40,7 @@ enum StreamType {
 
 enum Provider {
   Google
+  Credentials
 }
 
 enum Role {
