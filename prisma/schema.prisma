@@ -14,16 +14,25 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(uuid()) 
-  email        String   @unique
-  name         String
-  provider     Provider
+  id            String   @id @default(uuid()) 
+  email         String   @unique
+  name          String?
+  password      String?
+  provider      Provider
+  //  streams      Stream[] @relation("user")
+  // upvotes       Upvote[]
+  // addedStreams  Stream[] @relation("addedBy")
+  // hostedSpaces  Space[]  @relation("hostedBy")
 }
 
 model Space {
   id           String   @id @default(uuid()) 
   
 }
+
+// model Stream {
+  
+// }
 
 
 // model Upvote {

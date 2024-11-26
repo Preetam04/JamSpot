@@ -11,3 +11,8 @@ export const passwordSchema = z
     message:
       "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
   });
+
+export const authSchema = z.object({
+  email: emailSchema,
+  password: passwordSchema,
+});
