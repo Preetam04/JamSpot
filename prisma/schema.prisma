@@ -22,11 +22,17 @@ model User {
   //  streams      Stream[] @relation("user")
   // upvotes       Upvote[]
   // addedStreams  Stream[] @relation("addedBy")
-  // hostedSpaces  Space[]  @relation("hostedBy")
+  hostedSpaces  Space[]  @relation("hostedBy")
 }
 
 model Space {
-  id           String   @id @default(uuid()) 
+  id                String         @id @default(uuid()) 
+  name              String  
+  // streams           Stream[]       @relation("spaceStreams") 
+  hostId            String
+  host              User           @relation("hostedBy", fields: [hostId], references: [id])
+  isActive          Boolean        @default(true)
+  // currentStream CurrentStream?
   
 }
 
