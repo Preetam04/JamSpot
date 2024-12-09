@@ -18,7 +18,8 @@ const Checker = ({ children }: { children: React.ReactNode }) => {
   if (session.status === "loading" || session.status === "unauthenticated") {
     return (
       <div className="w-full flex justify-center mt-20">
-        <Loader size={56} className="text-primary  animate-spin" />
+        {/* <Loader size={56} className="text-primary  animate-spin" /> */}
+        Loading
       </div>
     ); // or a loading spinner if you prefer
   }

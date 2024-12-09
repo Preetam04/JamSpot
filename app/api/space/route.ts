@@ -3,7 +3,7 @@ import prisma from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
-const tempId = "528377f1-7319-4f7f-8f2f-516a1b8b5e3b";
+const tempId = "20560e4a-0325-4c87-9638-515d194f56f0";
 
 export async function POST(req: NextRequest) {
   try {
