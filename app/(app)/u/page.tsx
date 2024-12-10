@@ -16,6 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const Page = () => {
   const [newSpaceName, setNewSpaceName] = useState<string>("");
@@ -29,9 +30,10 @@ const Page = () => {
       const res = await axios.post("/api/space", {
         spaceName: newSpaceName,
       });
-      console.log(res.data.space.id);
+      // console.log(res.data.space.id);
       setNewSpaceId(res.data.space.id);
-      console.log(newSpaceName);
+      // console.log(newSpaceName);
+      toast("Space created Successfully");
     } catch (error) {
       console.log(error);
     }
@@ -57,8 +59,10 @@ const Page = () => {
                 </CardHeader>
                 {newSpaceId && (
                   <>
-                    <CardContent className=" text-sm font-bold">
-                      &ldquo;{newSpaceId}&ldquo;
+                    <CardContent className="text-sm font-bold">
+                      <span className="bg-primary/25 px-2 py-1 rounded">
+                        &ldquo;{newSpaceId}&ldquo;
+                      </span>
                     </CardContent>
                     <CardFooter>
                       <Button

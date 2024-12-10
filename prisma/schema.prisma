@@ -19,16 +19,16 @@ model User {
   name          String?
   password      String?
   provider      Provider
-  //  streams      Stream[] @relation("user")
-  // upvotes       Upvote[]
-  // addedStreams  Stream[] @relation("addedBy")
+  streams      Stream[] @relation("user")
+  upvotes       Upvote[]
+  addedStreams  Stream[] @relation("addedBy")
   hostedSpaces  Space[]  @relation("hostedBy")
 }
 
 model Space {
   id                String         @id @default(uuid()) 
   name              String  
-  // streams           Stream[]       @relation("spaceStreams") 
+  streams           Stream[]       @relation("spaceStreams") 
   hostId            String
   host              User           @relation("hostedBy", fields: [hostId], references: [id])
   isActive          Boolean        @default(true)
@@ -36,16 +36,36 @@ model Space {
   
 }
 
-// model Stream {
+model Stream {
+  id String @id @default(uuid())
+  type StreamType
+  url String
+  thumbnail String  @default("")
+  active  Boolean @default(true)
+  title String
+  played  Boolean @default(false)
+  userId        String
+  user          User           @relation(fields: [userId], references: [id], name: "user")
   
-// }
+  addedBy String
+  addedByUser User @relation("addedBy", fields: [addedBy], references: [id])
+  upvotes Upvote[]
+
+  spaceId       String?
+  space         Space?         @relation("spaceStreams", fields: [spaceId], references: [id], onDelete: Cascade)
+
+}
 
 
-// model Upvote {
-//   id           String   @id @default(uuid()) 
-//   stream       
-  
-// }
+model Upvote {
+  id           String   @id @default(uuid()) 
+  streamId   String
+  userId    String
+  user    User  @relation(fields: [userId], references: [id])
+  stream   Stream @relation(fields: [streamId], references: [id])
+
+  @@unique([userId, streamId])
+}
 
 enum StreamType {
   Spotify
